@@ -24,7 +24,13 @@ def rates_at_date():
 
     request_date = input("What Date would like to have information on? ")
     date_formatted = datetime.strptime(request_date, '%d/%m/%Y')
-    print (date_formatted)
+    date_formatted1 = datetime.strftime('%Y-%m-%d')
+    url = url_base.format(date_formatted1)
+    Json_date = requests.get(url).json()
+    dateurl = requests.get(url)
+    print (date_formatted1)
+    print (url)
+    print (dateurl.status_code)
 
 print (" Welcome to Currency info ")
 print ("--------------------------")
