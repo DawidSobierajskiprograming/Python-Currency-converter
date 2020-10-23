@@ -2,7 +2,7 @@ import json
 import requests
 import urllib.parse
 import datetime
-from datetime import *
+from datetime import datetime
 
 url_base = 'https://api.exchangeratesapi.io/{}'
 
@@ -23,14 +23,18 @@ def rates_with_base():
 def rates_at_date():
 
     request_date = input("What Date would like to have information on? ")
-    date_formatted = datetime.strptime(request_date, '%d/%m/%Y')
-    date_formatted1 = datetime.strftime('%Y-%m-%d')
-    url = url_base.format(date_formatted1)
+    date_with_time = datetime.strptime(request_date, '%d/%m/%Y')
+    date_only_date = date_with_time.date()
+    url = url_base.format(date_only_date)
     Json_date = requests.get(url).json()
     dateurl = requests.get(url)
-    print (date_formatted1)
-    print (url)
-    print (dateurl.status_code)
+    
+    print ("With Euro as the Base. The rates on " + request_date + " are:")
+    print ("---------------------------------------------------------")
+    print()
+
+    for each in Json_date['rates']:
+        print(each + ": " + str(Json_date['rates'][each]))
 
 print (" Welcome to Currency info ")
 print ("--------------------------")
