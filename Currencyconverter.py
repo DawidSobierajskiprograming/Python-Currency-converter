@@ -65,7 +65,8 @@ while True:
     elif usr_question == "date":
         rates_at_date()
     
-    elif usr_question == "convert"
+    elif usr_question == "convert":
+        convert()
     
     elif usr_question == "q" or usr_question == "quit":
         break
