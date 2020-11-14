@@ -45,10 +45,10 @@ def convert():
     url = formatted_url + urllib.parse.urlencode({"base": request_start_currency})
     Json_Rates = requests.get(url).json()
 
-    end_currecny_value = Json_Rates.get(request_end_currency)
+    end_currecny_value = Json_Rates['rates'].get(request_end_currency)
     if end_currecny_value != None:
-        total_value = end_currecny_value * request_ammount
-        print ("If you have " + request_ammount + " " + request_start_currency + " Then you will have " + total_value + " " + request_end_currency)
+        total_value = end_currecny_value * float(request_ammount)
+        print ("If you have " + request_ammount + " " + request_start_currency + " Then you will have " + str(total_value) + " " + request_end_currency)
     else:
         print ("Sorry we don't have infomration on this currency")
 
