@@ -36,6 +36,23 @@ def rates_at_date():
     for each in Json_date['rates']:
         print(each + ": " + str(Json_date['rates'][each]))
 
+def convert():
+    request_start_currency = input("What currency are you converting from? ")
+    request_ammount = input("How much " + request_start_currency + " are you looking to convert? ")
+    request_end_currency = input ("What is the currecny you want the value for? ")
+
+    formatted_url = url_base.format('latest?')
+    url = formatted_url + urllib.parse.urlencode({"base": request_start_currency})
+    Json_Rates = requests.get(url).json()
+
+    end_currecny_value = Json_Rates.get(request_end_currency)
+    if end_currecny_value != None:
+        total_value = end_currecny_value * request_ammount
+        print ("If you have " + request_ammount + " " + request_start_currency + " Then you will have " + total_value + " " + request_end_currency)
+    else:
+        print ("Sorry we don't have infomration on this currency")
+
+
 print (" Welcome to Currency info ")
 print ("--------------------------")
 
@@ -47,6 +64,8 @@ while True:
     
     elif usr_question == "date":
         rates_at_date()
+    
+    elif usr_question == "convert"
     
     elif usr_question == "q" or usr_question == "quit":
         break
