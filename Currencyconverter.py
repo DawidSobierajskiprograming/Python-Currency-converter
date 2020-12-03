@@ -62,10 +62,10 @@ while True:
     if usr_question == "rates" or usr_question == "Rates":
         rates_with_base()
     
-    elif usr_question == "date":
+    elif usr_question == "date" or usr_question == "Date":
         rates_at_date()
     
-    elif usr_question == "convert":
+    elif usr_question == "convert" or usr_question == "Convert":
         convert()
     
     elif usr_question == "q" or usr_question == "quit":
